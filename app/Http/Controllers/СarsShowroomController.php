@@ -2,9 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\CarsRepository;
 
-class CarsShowroomController extends Controller
+class СarsShowroomController extends Controller
 {
-    //
+    public function __construct(
+        private readonly CarsRepository $carsRepository
+    )
+    {}
+
+    public function show()
+    {
+        $cars = $this->carsRepository->getAllCarsInfo();
+        return view('dashboard', ['cars' => $cars]);
+    }
 }

@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cars_showroom', function (Blueprint $table) {
+        Schema::create('cars_showrooms', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('vehicle_id')->unsigned();
-            $table->foreign('vehicle_id')->references('id')->on('vehicle_directory');
+            $table->foreign('vehicle_id')->references('id')->on('vehicle_directories');
             $table->string('color');
             $table->integer('price');
             $table->string('sold')->default('no');
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cars_showroom');
+        Schema::dropIfExists('cars_showrooms');
     }
 };

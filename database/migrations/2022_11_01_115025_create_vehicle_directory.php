@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vehicle_directory', function (Blueprint $table) {
+        Schema::create('vehicle_directories', function (Blueprint $table) {
             $table->id();
             $table->string('model');
             $table->integer('year_of_production');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicle_directory');
+        Schema::dropIfExists('vehicle_directories');
     }
 };
