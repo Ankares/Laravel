@@ -55,7 +55,7 @@ class CarsShowroomSeeder extends Seeder
                 'color' => 'orange',
                 'price' => 8000,
                 'sold' => 'yes',
-                'sale_date' => date('2022-09-01')
+                'sale_date' => date('2022-09-20')
             ],
             [
                 'vehicle_id' => 7,

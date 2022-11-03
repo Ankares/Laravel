@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\CarsRepository;
+use App\Services\CarsDisplayingService;
 
 class СarsShowroomController extends Controller
 {
     public function __construct(
-        private readonly CarsRepository $carsRepository
+        private readonly CarsDisplayingService $carService
     )
     {}
 
     public function show()
     {
-        $cars = $this->carsRepository->getAllCarsInfo();
-        return view('dashboard', ['cars' => $cars]);
+        $data = $this->carService->getAllInformationAboutCars();
+        return view('dashboard', ['data' => $data]);
     }
 }
