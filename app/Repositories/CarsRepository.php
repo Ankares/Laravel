@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\CarsShowroom;
+use App\Interfaces\CarsRepositoryInterface;
 
-class CarsRepository
+class CarsRepository implements CarsRepositoryInterface
 {
     public function getAvgPriceOfSoldCars(): int
     {
