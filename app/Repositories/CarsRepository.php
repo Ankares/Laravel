@@ -2,15 +2,42 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\CarsRepositoryInterface;
 use App\Models\CarsShowroom;
 
-class CarsRepository implements CarsRepositoryInterface
+class CarsRepository
 {
-    public function getAllCarsInfo() {
-        //with lazy loading
-        $cars = CarsShowroom::query()->with(['vehicleDirectory'])->leftJoin('vehicle_directories', 'vehicle_id', '=', 'vehicle_directories.id')->orderBy('year_of_production', 'desc')->orderBy('price', 'asc')->get();
-        
-        return $cars;
+    public function getAvgPriceOfSoldCars(): int
+    {
+        $averagePriceOfSoldCars = CarsShowroom::query()->with('vehicleDirectory')->where('sold', 'yes')->avg('price');
+
+        return round($averagePriceOfSoldCars);
+    }
+
+    public function getAvgPriceOfTodaySales(): int
+    {
+        $averagePriceOfTodaySales = CarsShowroom::query()->with('vehicleDirectory')->where('sale_date', date('Y-m-d'))->avg('price');
+
+        return round($averagePriceOfTodaySales);
+    }
+
+    public function groupCarsSalesByDay()
+    {
+        $dayCarSales = CarsShowroom::query()->where('sale_date', '!=', null)->selectRaw('sale_date')->selectRaw('count(id)')->groupBy('sale_date')->orderBy('sale_date', 'desc')->limit(100)->get();
+
+        return $dayCarSales;
+    }
+
+    public function getUnsoldCars()
+    {
+        $unsoldCars = CarsShowroom::query()->leftJoin('vehicle_directories', 'vehicle_id', '=', 'vehicle_directories.id')->where('sold', 'no')->orderBy('year_of_production', 'desc')->orderBy('price', 'asc')->limit(100)->get();
+
+        return $unsoldCars;
+    }
+
+    public function getSoldCarModels()
+    {
+        $soldModels = CarsShowroom::query()->leftJoin('vehicle_directories', 'vehicle_id', '=', 'vehicle_directories.id')->select('model', 'year_of_production')->where('sold', 'yes')->limit(100)->get();
+
+        return $soldModels;
     }
 }

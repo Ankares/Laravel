@@ -6,14 +6,10 @@ use App\Services\CarsDisplayingService;
 
 class СarsShowroomController extends Controller
 {
-    public function __construct(
-        private readonly CarsDisplayingService $carService
-    )
-    {}
-
-    public function show()
+    public function show(CarsDisplayingService $carsService)
     {
-        $data = $this->carService->getAllInformationAboutCars();
+        $data = $carsService->getAllCarsInfo();
+
         return view('dashboard', ['data' => $data]);
     }
 }

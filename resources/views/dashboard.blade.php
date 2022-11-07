@@ -23,7 +23,7 @@
             <div class="mb-5">
                 Average price of cars sold today: 
                 <span class="hover:text-blue-500 font-bold cursor-pointer">
-                    {{$data['avgPriceOfTodaysSales']}} $
+                    {{$data['avgPriceOfTodaySales']}} $
                 </span>
             </div>
 
@@ -37,10 +37,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data['carsSalesByDay'] as $k => $v)
+                        @foreach ($data['carsSalesByDay'] as $carsSalesByDay)
                             <tr>
-                                <td>{{$k}}</td>
-                                <td>{{$v}}</td>
+                                <td>{{$carsSalesByDay['sale_date']}}</td>
+                                <td>{{$carsSalesByDay['count(id)']}}</td>
                             </tr>                    
                         @endforeach
                     </tbody>
@@ -48,11 +48,11 @@
             </div> 
 
             Unsold cars: 
-            <div class="table mx-auto">
+            <div class="table mx-auto mb-5">
                 <table class="table-auto text-left">
                     <thead>
                     <tr>
-                        <th class="w-40">Car Model</th>
+                        <th class="w-52">Car Model</th>
                         <th class="w-40">Year of production</th>
                         <th class="w-24">Color</th>
                         <th>Price</th>
@@ -72,10 +72,10 @@
             </div> 
 
             <div class="mt-5">
-                Sold models: 
-                @foreach ($data['soldCars'] as $car)
+                Sold models:
+                @foreach ($data['soldModels'] as $car)
                     <li>
-                        {{$car['model']}}
+                        {{$car['model'] . ', ' . $car['year_of_production']}}
                     </li>
                 @endforeach
             </div>

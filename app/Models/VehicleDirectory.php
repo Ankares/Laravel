@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class VehicleDirectory extends Model
 {
-    
+    use HasFactory;
+
+    public $timestamps = false;
 }
