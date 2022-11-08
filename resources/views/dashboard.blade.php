@@ -11,7 +11,7 @@
     @extends('layouts/navigation')
     <div class="container mx-auto mt-14">
         <h1 class="text-center text-5xl mb-10">Cars Sales Information</h1>
-        <div class="w-10/12 mx-auto bg-gray-50 shadow-md rounded px-8 pt-6 pb-8 mb-5 text-xl">
+        <div class="w-10/12 mx-auto bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-5 text-xl">
 
             <div class="mb-5">
                 Average price of sold cars ever: 

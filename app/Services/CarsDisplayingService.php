@@ -7,7 +7,7 @@ use App\Repositories\CarsRepository;
 class CarsDisplayingService
 {
     public function __construct(
-        private readonly CarsRepository $carsRepository
+        public readonly CarsRepository $carsRepository
     ) {
     }
 
