@@ -23,13 +23,13 @@ class CarsTest extends TestCase
 
     public function test_serviceMethod()
     {
-        $mock = $this->getMockBuilder(CarsRepository::class)->getMock();
+        $mock = $this->mock(CarsRepository::class);
        
-        $mock->expects($this->once())->method('getAvgPriceOfSoldCars');
-        $mock->expects($this->once())->method('getAvgPriceOfTodaySales');
-        $mock->expects($this->once())->method('groupCarsSalesByDay');
-        $mock->expects($this->once())->method('getUnsoldCars');
-        $mock->expects($this->once())->method('getSoldCarModels');
+        $mock->expects()->getAvgPriceOfSoldCars()->andReturn('1');
+        $mock->expects()->getAvgPriceOfTodaySales()->andReturn('2');
+        $mock->expects()->groupCarsSalesByDay()->andReturn('3');
+        $mock->expects()->getUnsoldCars()->andReturn('4');
+        $mock->expects()->getSoldCarModels()->andReturn('5');
 
         $cars = new CarsDisplayingService($mock);
         $data = $cars->getAllCarsInfo();
@@ -37,11 +37,10 @@ class CarsTest extends TestCase
         $this->assertNotEmpty($data);
         $this->assertIsArray($data);
         $this->assertCount(5, $data);
-        $this->assertArrayHasKey('avgPriceOfSoldCars', $data);
-        $this->assertArrayHasKey('avgPriceOfTodaySales', $data);
-        $this->assertArrayHasKey('carsSalesByDay', $data);
-        $this->assertArrayHasKey('unsoldCars', $data);
-        $this->assertArrayHasKey('soldModels', $data);
-
+        $this->assertEquals('1', $data['avgPriceOfSoldCars']);
+        $this->assertEquals('2', $data['avgPriceOfTodaySales']);
+        $this->assertEquals('3', $data['carsSalesByDay']);
+        $this->assertEquals('4', $data['unsoldCars']);
+        $this->assertEquals('5', $data['soldModels']);
     }
 }
