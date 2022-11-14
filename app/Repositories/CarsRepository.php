@@ -37,7 +37,7 @@ class CarsRepository implements CarsRepositoryInterface
 
     public function getSoldCarModels()
     {
-        $soldModels = CarsShowroom::query()->join('vehicle_directories', 'vehicle_id', '=', 'vehicle_directories.id')->select('model', 'year_of_production')->where('sold', 'yes')->limit(100)->get();
+        $soldModels = CarsShowroom::query()->join('vehicle_directories', 'vehicle_id', '=', 'vehicle_directories.id')->selectRaw('model')->where('sold', 'no')->groupBy('model')->orderBy('model')->limit(100)->get();
 
         return $soldModels;
     }

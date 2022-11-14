@@ -72,10 +72,10 @@
             </div> 
 
             <div class="mt-5">
-                Sold models:
+                Unsold models:
                 @foreach ($data['soldModels'] as $car)
                     <li>
-                        {{$car['model'] . ', ' . $car['year_of_production']}}
+                        {{$car['model']}}
                     </li>
                 @endforeach
             </div>
