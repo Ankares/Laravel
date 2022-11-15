@@ -25,6 +25,8 @@ class SelectCarsTest extends TestCase
 
     public function test_select_work()
     {
+        VehicleDirectory::factory()->createOne(['model'=>'BMW M3', 'year_of_production'=>2020]);
+        CarsShowroom::factory()->createOne(['vehicle_id'=>'1', 'color'=>'black','price'=>'2222','sold'=>'no']);
         $db_data = DB::select('select * from cars_showrooms where vehicle_id = 1');
         $db_data_price = $db_data[0]->price;
         $model_data = CarsShowroom::find($db_data[0]->id);
