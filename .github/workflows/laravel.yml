@@ -30,10 +30,11 @@ jobs:
         touch database/database.sqlite
     - name: NPM install
       run: npm install
-    - name: PHPCS apply
-      run: vendor/bin/phpcs
     - name: Execute PHPUnit tests 
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
+    - name: PHPCS apply
+      run: vendor/bin/phpcs
+   
