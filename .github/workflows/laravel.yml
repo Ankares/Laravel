@@ -35,6 +35,8 @@ jobs:
       run: php artisan migrate --force
     - name: NPM install
       run: npm install
+    - name: NPM run
+      run: npm run build
     - name: Execute PHPUnit tests 
       env:
         DB_CONNECTION: sqlite
