@@ -19,7 +19,7 @@ jobs:
     - name: Copy .env.example to .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install composer dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: composer install
     - name: Generate encryption key
       run: php artisan key:generate
     - name: Set directory permissions
@@ -31,9 +31,9 @@ jobs:
     - name: NPM install
       run: npm install
     - name: PHPCS apply
-      run: ./vendor/bin/phpcs
+      run: vendor/bin/phpcs
     - name: Execute PHPUnit tests 
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: ./vendor/bin/phpunit
+      run: vendor/bin/phpunit
